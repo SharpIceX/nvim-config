@@ -1,0 +1,20 @@
+local opt = vim.opt
+
+opt.mouse = "a"
+opt.tabstop = 4
+opt.number = true
+opt.scrolloff = 8
+opt.laststatus = 3
+opt.shiftwidth = 4
+opt.undofile = true
+opt.expandtab = true
+opt.smartcase = true
+opt.updatetime = 250
+opt.ignorecase = true
+opt.smartindent = true
+opt.cursorline = true
+opt.signcolumn = "yes"
+opt.fileformat = "unix"
+opt.relativenumber = true
+opt.termguicolors = true
+opt.clipboard = "unnamedplus"
