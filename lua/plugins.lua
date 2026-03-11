@@ -81,14 +81,19 @@ require("lazy").setup({
 			dependencies = { "saghen/blink.cmp" },
 			event = { "BufReadPost", "BufNewFile" },
 			config = function()
-				local lspconfig = require("lspconfig")
 				local capabilities = require('blink.cmp').get_lsp_capabilities()
 
-				require('lspconfig.ui.windows').default_options.border = 'rounded'
+				-- UI
+				local border = "rounded"
+				vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
+				vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signatureHelp,
+					{ border = border })
 
+				-- 语言服务器
 				local servers = { "pyright", "ts_ls", "lua_ls" }
+
 				for _, lsp in ipairs(servers) do
-					lspconfig[lsp].setup({
+					vim.lsp.config(lsp, {
 						capabilities = capabilities,
 						settings = lsp == "lua_ls" and {
 							Lua = {
@@ -97,8 +102,11 @@ require("lazy").setup({
 							},
 						} or {},
 					})
+
+					vim.lsp.enable(lsp)
 				end
 
+				-- 4. 诊断信息美化
 				vim.diagnostic.config({
 					severity_sort = true,
 					virtual_text = { prefix = "●" },
@@ -190,7 +198,8 @@ require("lazy").setup({
 				-- 自动开启缩进
 				vim.api.nvim_create_autocmd('FileType', {
 					callback = function()
-						if vim.lua.require 'nvim-treesitter'.indentexpr then
+						local ok, ts_indent = pcall(require, 'nvim-treesitter.configs')
+						if ok then
 							vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 						end
 					end,

@@ -15,6 +15,5 @@ opt.smartindent = true
 opt.cursorline = true
 opt.signcolumn = "yes"
 opt.fileformat = "unix"
-opt.relativenumber = true
 opt.termguicolors = true
 opt.clipboard = "unnamedplus"
