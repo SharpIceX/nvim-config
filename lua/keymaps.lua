@@ -1,28 +1,47 @@
-local keymap = vim.keymap
-
--- 系统剪贴板
-keymap.set({ 'n', 'v' }, '<C-c>', '"+y', { desc = "复制" })
-keymap.set('v', '<C-x>', '"+x', { desc = "剪切" })
-keymap.set({ 'n', 'v' }, '<C-v>', '"+p', { desc = "粘贴" })
-keymap.set('i', '<C-v>', '<C-r>+', { desc = "插入模式粘贴" })
-
--- 保存
-keymap.set({ 'n', 'i', 'v' }, '<C-s>', '<cmd>w<cr><Esc>', { desc = "保存文件" })
-
--- 防止删除内容覆盖剪贴板
-keymap.set('n', 'x', '"_x')
-keymap.set('n', '<Del>', '"_x')
-keymap.set('n', '<leader>d', '"_d', { desc = "删除但不复制" })
-
--- 缩进
-keymap.set('v', '<Tab>', '>gv', { desc = "向右缩进" })
-keymap.set('v', '<S-Tab>', '<gv', { desc = "向左缩进" })
-
--- 上下移动行
-keymap.set('n', '<A-j>', ':m .+1<cr>==', { desc = "向下移动行" })
-keymap.set('n', '<A-k>', ':m .-2<cr>==', { desc = "向上移动行" })
-keymap.set('v', '<A-j>', ":m '>+1<cr>gv=gv", { desc = "向下移动选中行" })
-keymap.set('v', '<A-k>', ":m '<-2<cr>gv=gv", { desc = "向上移动选中行" })
+local keymap = vim.keymap.set
 
 -- 全选
-keymap.set({ 'n', 'v', 'i' }, '<C-a>', '<Esc>ggVG', { desc = "全选" })
+keymap('n', '<C-a>', 'ggVG', { desc = 'Select All', })
+keymap('i', '<C-a>', '<Esc>ggVG', { desc = 'Select All', })
+
+-- 复制
+keymap('n', '<C-c>', '"+yy', { desc = 'Copy Line', })
+keymap('v', '<C-c>', '"+y', { desc = 'Copy Selection', })
+keymap('i', '<C-c>', '<Esc>"+yy', { desc = 'Copy Line', })
+
+-- 剪切
+keymap('n', '<C-x>', '"+dd', { desc = 'Cut Line', })
+keymap('v', '<C-x>', '"+d', { desc = 'Cut Selection', })
+keymap('i', '<C-x>', '<Esc>"+dd', { desc = 'Cut Line', })
+
+-- 粘贴
+keymap('n', '<C-v>', '"+p', { desc = 'Paste', })
+keymap('i', '<C-v>', '<C-r>+', { desc = 'Paste', })
+keymap('c', '<C-v>', '<C-r>+', { desc = 'Paste', })
+
+-- 撤销
+keymap('n', '<C-z>', 'u', { desc = 'Undo', })
+keymap('i', '<C-z>', '<C-o>u', { desc = 'Undo', })
+
+-- 重做
+keymap('n', '<C-y>', '<C-r>', { desc = 'Redo', })
+keymap('i', '<C-y>', '<C-o><C-r>', { desc = 'Redo', })
+
+-- 快速移动到行首和行尾
+keymap('n', '<End>', '$')
+keymap('n', '<Home>', '^')
+keymap('v', '<End>', '$')
+keymap('v', '<Home>', '^')
+keymap('i', '<End>', '<C-o>$')
+keymap('i', '<Home>', '<C-o>^')
+
+-- 切换标签页
+keymap({ 'n', 'i', 'v', }, '<C-Tab>', '<Esc><Cmd>bnext<CR>')
+keymap({ 'n', 'i', 'v', }, '<C-S-Tab>', '<Esc><Cmd>bprevious<CR>')
+
+-- 关闭标签页
+keymap({ 'n', 'i', 'v', }, '<C-w>', '<Esc><Cmd>bdelete<CR>')
+
+-- 减少缩进
+keymap('v', '<S-Tab>', '<gv')
+keymap('i', '<S-Tab>', '<C-d>')

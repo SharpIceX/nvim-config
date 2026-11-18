@@ -1,33 +1,10 @@
 {
-	"Lua.runtime.version": "Lua 5.1",
+	"Lua.runtime.version": "LuaJIT",
 	"Lua.diagnostics.globals": ["vim"],
-	"Lua.runtime.path": [
-		// NeoVim
-		"C:\\tools\\neovim\\nvim-win64\\share\\nvim\\runtime\\lua\\?.lua",
-		"C:\\tools\\neovim\\nvim-win64\\share\\nvim\\runtime\\lua\\?\\init.lua",
-
-		// Lazy Plugin Managers
-		"C:\\Users\\SharpIce\\AppData\\Local\\nvim\\nvim-data\\lazy\\lazy.nvim\\lua\\lazy\\?.lua",
-		"C:\\Users\\SharpIce\\AppData\\Local\\nvim\\nvim-data\\lazy\\lazy.nvim\\lua\\lazy\\?\\init.lua",
-
-		// 其他,
-		"C:\\Users\\SharpIce\\AppData\\Local\\nvim\\nvim-data\\lazy\\?\\lua\\?.lua",
-		"C:\\Users\\SharpIce\\AppData\\Local\\nvim\\nvim-data\\lazy\\?\\lua\\?\\init.lua",
-
-		"C:\\Users\\SharpIce\\AppData\\Local\\nvim\\nvim-data\\lazy\\?\\lua\\?\\?.lua",
-		"C:\\Users\\SharpIce\\AppData\\Local\\nvim\\nvim-data\\lazy\\?\\lua\\?\\?\\init.lua"
-	],
+	"Lua.workspace.checkThirdParty": false,
+	"Lua.completion.callSnippet": "Replace",
 	"Lua.workspace.library": [
-		// NeoVim
-		"C:\\tools\\neovim\\nvim-win64\\share\\nvim\\runtime\\lua",
-		"C:\\tools\\neovim\\nvim-win64\\share\\nvim\\runtime\\lua\\vim",
-
-		// Lazy Plugin Managers
-		"C:\\Users\\SharpIce\\AppData\\Local\\nvim\\nvim-data\\lazy\\lazy.nvim\\lua\\lazy",
-
-		// 其他
-		"C:\\Users\\SharpIce\\AppData\\Local\\nvim\\nvim-data\\lazy\\?\\lua",
-
-		"C:\\Users\\SharpIce\\AppData\\Local\\nvim\\nvim-data\\lazy\\?\\lua\\?"
+		"/usr/share/nvim/runtime",
+		"/home/sharpice/.local/share/nvim/site/pack/core/opt"
 	]
 }
